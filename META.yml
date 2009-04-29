@@ -1,7 +1,7 @@
 # http://module-build.sourceforge.net/META-spec.html
 #XXXXXXX This is a prototype!!!  It will change in the future!!! XXXXX#
 name:         Sledge-Plugin-BeforeOutput
-version:      0.02
+version:      0.03
 author: syushi matsumoto <matsumoto@alink.co.jp>
 build_requires:
   Test::More: 0

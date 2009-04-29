@@ -3,7 +3,7 @@ package Sledge::Plugin::BeforeOutput;
 use strict;
 no strict 'refs';
 use vars qw($VERSION);
-$VERSION = 0.02;
+$VERSION = 0.03;
 
 sub import {
     my $class = shift;
@@ -22,8 +22,10 @@ sub import {
         my $output_content_method = \&Sledge::Pages::Base::output_content;
         *{'Sledge::Pages::Base::output_content'} = sub {
             my $self = shift;
-            $self->invoke_hook('BEFORE_OUTPUT');
-            &$output_content_method($self);
+            unless ($self->finished) {
+                $self->invoke_hook('BEFORE_OUTPUT');
+                &$output_content_method($self);
+            }
         };
     }
 }
@@ -37,7 +39,7 @@ Sledge::Plugin::BeforeOutput - add trigger before outout plugin for Sledge.
 
 =head1 VERSION
 
-Version 0.02
+Version 0.03
 
 =head1 SYNOPSIS
 
